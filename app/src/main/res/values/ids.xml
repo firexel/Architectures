@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="error_view" />
+    <item type="id" name="name_text" />
+    <item type="id" name="surname_text" />
+    <item type="id" name="avatar_img" />
+    <item type="id" name="spinner_view" />
+</resources>
