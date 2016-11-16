@@ -7,6 +7,8 @@ import android.net.Uri;
  */
 public interface Profile {
     String getName();
+
     String getSurname();
+
     Uri getAvatarUri();
 }

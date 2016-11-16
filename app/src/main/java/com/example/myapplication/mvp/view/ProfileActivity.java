@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
                 .locate(PresenterFactory.class)
                 .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, -1), this);
 
-        mPresenter.loadProfile();
+        mPresenter.onLoadProfile();
     }
 
     @Override

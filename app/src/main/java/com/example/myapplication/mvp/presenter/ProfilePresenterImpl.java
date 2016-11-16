@@ -26,7 +26,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
     }
 
     @Override
-    public void loadProfile() {
+    public void onLoadProfile() {
         mView.hideError();
         mView.showProgress();
         mLoadFuture = mProfileSource.loadProfile(mProfileId, new ProfileSource.CompleteListener<Profile>() {
