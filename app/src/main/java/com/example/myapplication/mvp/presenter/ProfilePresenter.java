@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.presenter;
 
 import android.net.Uri;
 

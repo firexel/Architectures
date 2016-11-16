@@ -1,4 +1,7 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.presenter;
+
+import com.example.myapplication.mvp.model.Profile;
+import com.example.myapplication.mvp.model.ProfileSource;
 
 import java.util.concurrent.Future;
 
@@ -31,7 +34,7 @@ public class ProfilePresenterImpl implements ProfilePresenter {
             public void onLoaded(Profile item) {
                 mView.hideProgress();
                 mView.showName(item.getName());
-                mView.showSurname(item.getSurename());
+                mView.showSurname(item.getSurname());
                 mView.showAvatar(item.getAvatarUri());
                 mLoadFuture = null;
             }

@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.model;
 
 import android.net.Uri;
 
@@ -7,6 +7,6 @@ import android.net.Uri;
  */
 public interface Profile {
     String getName();
-    String getSurename();
+    String getSurname();
     Uri getAvatarUri();
 }

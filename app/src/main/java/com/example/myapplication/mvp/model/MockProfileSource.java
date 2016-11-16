@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.model;
 
 import android.net.Uri;
 
@@ -32,7 +32,7 @@ public class MockProfileSource implements ProfileSource {
         }
 
         @Override
-        public String getSurename() {
+        public String getSurname() {
             return "MockSurname";
         }
 
