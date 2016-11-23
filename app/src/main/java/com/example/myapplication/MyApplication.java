@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.myapplication.mvp.Locator;
 import com.example.myapplication.mvp.model.MockProfileSource;
+import com.example.myapplication.mvp.model.network.NetworkProfileSource;
 import com.example.myapplication.mvp.presenter.ProductionPresenterFactory;
 import com.example.myapplication.mvp.presenter.PresenterFactory;
 
@@ -19,7 +20,7 @@ public class MyApplication extends Application implements Locator.Host {
         mLocator = new Locator();
         mLocator.register(
                 PresenterFactory.class,
-                new ProductionPresenterFactory(new MockProfileSource())
+                new ProductionPresenterFactory(new NetworkProfileSource())
         );
     }
 

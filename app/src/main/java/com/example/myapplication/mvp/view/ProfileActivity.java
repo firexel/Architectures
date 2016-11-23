@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
 
         mPresenter = Locator.from(this)
                 .locate(PresenterFactory.class)
-                .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, -1), this);
+                .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, 1), this);
 
         mPresenter.onLoadProfile();
     }
