@@ -1,6 +1,5 @@
 package com.example.myapplication.vanilla.retrofit;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -15,11 +14,11 @@ public interface Api {
     @GET("/profile/{id}")
     Call<ApiResponse> getProfile(@Path("id") String id);
 
-    @POST("/profile/{id}")
-    Call<ApiResponse> putProfile(@Path("id") String id, @Body ProfileBody body);
+    @POST("/profile")
+    Call<ApiResponse> putProfile(@Body ProfileReqBody body);
 
-    @GET("/profile/{id}/avatar")
-    Call<ResponseBody> getAvatar(@Path("id") String id);
+    @POST("/profile/{id}")
+    Call<ApiResponse> updateProfile(@Path("id") String id, @Body ProfileReqBody body);
 
     @GET("/profile/{id}/hasboobs")
     Call<ApiResponse> hasBoobs(@Path("id") String id);

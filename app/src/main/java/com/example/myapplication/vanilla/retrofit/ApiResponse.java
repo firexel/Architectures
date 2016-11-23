@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ApiResponse {
 
-    @SerializedName("Result")
+    @SerializedName("result")
     @Nullable
     private JsonObject result;
 

@@ -8,16 +8,16 @@ import com.google.gson.annotations.SerializedName;
  * Created by aleksandr.naumov on 22.11.2016.
  */
 
-public class ProfileBody {
-    @SerializedName("name")
+public class ProfileReqBody {
+    @SerializedName("Name")
     private String mName;
 
-    @SerializedName("surname")
+    @SerializedName("Surname")
     private String mSurname;
 
-    @SerializedName("avatarUri")
+    @SerializedName("AvatarUri")
     private Uri mAvatarUri;
 
-    @SerializedName("age")
+    @SerializedName("Age")
     private int mAge;
 }
