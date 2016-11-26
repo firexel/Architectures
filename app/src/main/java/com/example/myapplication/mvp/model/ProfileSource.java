@@ -1,4 +1,6 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.model;
+
+import com.example.myapplication.mvp.model.Profile;
 
 import java.util.concurrent.Future;
 

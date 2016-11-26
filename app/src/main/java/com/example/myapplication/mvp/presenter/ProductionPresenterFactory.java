@@ -1,4 +1,6 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.presenter;
+
+import com.example.myapplication.mvp.model.ProfileSource;
 
 /**
  * Created by Alex on 16.11.2016.

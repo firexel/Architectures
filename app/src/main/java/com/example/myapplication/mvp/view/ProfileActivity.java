@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.view;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.mvp.Locator;
+import com.example.myapplication.mvp.presenter.PresenterFactory;
+import com.example.myapplication.mvp.presenter.ProfilePresenter;
 
 /**
  * Created by Alex on 15.11.2016.
@@ -37,9 +40,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
 
         mPresenter = Locator.from(this)
                 .locate(PresenterFactory.class)
-                .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, -1), this);
+                .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, 1), this);
 
-        mPresenter.loadProfile();
+        mPresenter.onLoadProfile();
     }
 
     @Override

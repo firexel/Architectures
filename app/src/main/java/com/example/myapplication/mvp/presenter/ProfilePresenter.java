@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.presenter;
 
 import android.net.Uri;
 
@@ -6,7 +6,7 @@ import android.net.Uri;
  * Created by Alex on 15.11.2016.
  */
 public interface ProfilePresenter {
-    void loadProfile();
+    void onLoadProfile();
     void destroy();
 
     interface View {

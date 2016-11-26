@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp;
+package com.example.myapplication.mvp.presenter;
 
 /**
  * Created by Alex on 16.11.2016.

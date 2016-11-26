@@ -10,7 +10,16 @@ public class Profile {
 
     private String mName;
     private String mSurname;
+    private int mAge;
     private Uri mAvatarUri;
+
+    public int getAge() {
+        return mAge;
+    }
+
+    public void setAge(int age) {
+        mAge = age;
+    }
 
     public String getName() {
         return mName;
@@ -43,17 +52,21 @@ public class Profile {
 
         Profile profile = (Profile) o;
 
+        if (mAge != profile.mAge) return false;
         if (mName != null ? !mName.equals(profile.mName) : profile.mName != null) return false;
         if (mSurname != null ? !mSurname.equals(profile.mSurname) : profile.mSurname != null)
             return false;
-        return !(mAvatarUri != null ? !mAvatarUri.equals(profile.mAvatarUri) : profile.mAvatarUri != null);
+        if (mAvatarUri != null ? !mAvatarUri.equals(profile.mAvatarUri) : profile.mAvatarUri != null)
+            return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
         int result = mName != null ? mName.hashCode() : 0;
         result = 31 * result + (mSurname != null ? mSurname.hashCode() : 0);
+        result = 31 * result + mAge;
         result = 31 * result + (mAvatarUri != null ? mAvatarUri.hashCode() : 0);
         return result;
     }
