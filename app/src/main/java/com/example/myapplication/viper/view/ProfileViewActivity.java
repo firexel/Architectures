@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp.view;
+package com.example.myapplication.viper.view;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.mvp.Locator;
-import com.example.myapplication.mvp.presenter.PresenterFactory;
-import com.example.myapplication.mvp.presenter.ProfilePresenter;
+import com.example.myapplication.viper.presenter.PresenterFactory;
+import com.example.myapplication.viper.presenter.ProfileViewPresenter;
 
 /**
  * Created by Alex on 15.11.2016.
  */
-public class ProfileActivity extends AppCompatActivity implements ProfilePresenter.View {
+public class ProfileViewActivity extends AppCompatActivity implements ProfileViewPresenter.View {
 
     private static final String EXTRA_PROFILE_ID = "profile_id";
 
@@ -25,7 +25,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
     private TextView mSurnameText;
     private ImageView mAvatarView;
 
-    private ProfilePresenter mPresenter;
+    private ProfileViewPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,16 @@ public class ProfileActivity extends AppCompatActivity implements ProfilePresent
         mNameText = (TextView) findViewById(R.id.name_text);
         mSurnameText = (TextView) findViewById(R.id.surname_text);
         mAvatarView = (ImageView) findViewById(R.id.avatar_img);
+        findViewById(R.id.button_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.onEditProfile();
+            }
+        });
 
         mPresenter = Locator.from(this)
                 .locate(PresenterFactory.class)
-                .createProfilePresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, 1), this);
-
-        mPresenter.onLoadProfile();
+                .createProfileViewPresenter(getIntent().getIntExtra(EXTRA_PROFILE_ID, 1), this);
     }
 
     @Override

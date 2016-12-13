@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <activity
             android:name=".vanilla.ProfileActivity"
             android:label="@string/title_activity_profile"
@@ -20,6 +19,11 @@
 
         <activity
             android:name=".mvp.view.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".viper.view.ProfileViewActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -29,6 +33,11 @@
             </intent-filter>
 
         </activity>
+
+        <activity
+            android:name=".viper.view.ProfileEditActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.mvp.model;
+package com.example.myapplication.viper.model;
 
 import android.net.Uri;
 

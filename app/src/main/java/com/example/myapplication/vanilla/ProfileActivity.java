@@ -40,7 +40,7 @@ public class ProfileActivity extends BaseAccessActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_view);
 
         mSpinnerView = findViewById(R.id.spinner_view);
         mErrorView = findViewById(R.id.error_view);
