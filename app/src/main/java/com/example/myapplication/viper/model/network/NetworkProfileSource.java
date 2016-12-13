@@ -55,6 +55,11 @@ public class NetworkProfileSource implements ProfileSource {
         return null;
     }
 
+    @Override
+    public Future<Integer> updateProfile(int profileId, Profile profile, CompleteListener<Integer> completeListener) {
+        return null;
+    }
+
     private Profile mapToProfile(ApiResponse body) {
         final ProfileRespBody resp = new Gson().fromJson(body.getResult(), ProfileRespBody.class);
         return new Profile() {
@@ -71,6 +76,11 @@ public class NetworkProfileSource implements ProfileSource {
             @Override
             public Uri getAvatarUri() {
                 return Uri.parse(resp.getAvatarUri());
+            }
+
+            @Override
+            public int getAge() {
+                return 17;
             }
         };
     }

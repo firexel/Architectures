@@ -1,5 +1,10 @@
 package com.example.myapplication.viper.presenter;
 
+import com.example.myapplication.viper.interactor.ProfileEditInteractor;
+import com.example.myapplication.viper.interactor.ProfileEditInteractorImpl;
+import com.example.myapplication.viper.interactor.ProfileGetInteractor;
+import com.example.myapplication.viper.interactor.ProfileGetInteractorImpl;
+import com.example.myapplication.viper.model.ProfileRepository;
 import com.example.myapplication.viper.model.ProfileSource;
 import com.example.myapplication.viper.router.Router;
 
@@ -10,10 +15,12 @@ public class ProductionPresenterFactory implements PresenterFactory {
 
     private final ProfileSource mProfileSource;
     private final Router mRouter;
+    private final ProfileRepository mProfileRepository;
 
-    public ProductionPresenterFactory(ProfileSource profileSource, Router router) {
+    public ProductionPresenterFactory(ProfileSource profileSource, Router router, ProfileRepository mProfileRepository) {
         mProfileSource = profileSource;
         mRouter = router;
+        this.mProfileRepository = mProfileRepository;
     }
 
     @Override
@@ -23,6 +30,8 @@ public class ProductionPresenterFactory implements PresenterFactory {
 
     @Override
     public ProfileEditPresenter createProfileEditPresenter(int profileId, ProfileEditPresenter.View view) {
-        return new MockProfileEditPresenter(view);
+        ProfileEditInteractor interactor = new ProfileEditInteractorImpl(mProfileRepository);
+        ProfileGetInteractor getInteractor = new ProfileGetInteractorImpl(mProfileRepository);
+        return new ProfileEditPresenterImpl(view, profileId, mRouter, interactor, getInteractor);
     }
 }

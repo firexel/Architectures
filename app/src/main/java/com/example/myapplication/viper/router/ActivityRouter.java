@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.myapplication.viper.view.ProfileEditActivity;
+import com.example.myapplication.viper.view.ProfileViewActivity;
 
 /**
  * Created by Alex on 13.12.2016.
@@ -22,4 +23,12 @@ public class ActivityRouter implements Router {
         Intent intent = new Intent(mContext, ProfileEditActivity.class);
         mContext.startActivity(intent);
     }
+
+    @Override
+    public void showProfileScreen(int id) {
+        Intent intent = new Intent(mContext, ProfileViewActivity.class);
+        mContext.startActivity(intent);
+    }
+
+
 }

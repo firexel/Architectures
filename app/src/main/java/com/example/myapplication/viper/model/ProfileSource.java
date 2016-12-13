@@ -8,6 +8,8 @@ import java.util.concurrent.Future;
 public interface ProfileSource {
     Future<Profile> loadProfile(int profileId, CompleteListener<Profile> completeListener);
 
+    Future<Integer> updateProfile(int profileId, Profile profile, CompleteListener<Integer> completeListener);
+
     interface CompleteListener<T> {
         void onLoaded(T item);
 
