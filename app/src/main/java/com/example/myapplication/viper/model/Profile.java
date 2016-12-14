@@ -11,4 +11,6 @@ public interface Profile {
     String getSurname();
 
     Uri getAvatarUri();
+
+    int getAge();
 }

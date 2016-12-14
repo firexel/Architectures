@@ -6,4 +6,5 @@ package com.example.myapplication.viper.router;
 
 public interface Router {
     void showEditProfileScreen(int id);
+    void showProfileScreen(int id);
 }

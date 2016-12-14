@@ -4,6 +4,11 @@ import android.app.Application;
 
 import com.example.myapplication.mvp.Locator;
 import com.example.myapplication.viper.model.MockProfileSource;
+import com.example.myapplication.viper.model.ProfileRepository;
+import com.example.myapplication.viper.model.ProfileRepositoryImpl;
+import com.example.myapplication.viper.model.ProfileSource;
+import com.example.myapplication.viper.model.local.LocalProfileSource;
+import com.example.myapplication.viper.model.network.NetworkProfileSource;
 import com.example.myapplication.viper.presenter.PresenterFactory;
 import com.example.myapplication.viper.presenter.ProductionPresenterFactory;
 import com.example.myapplication.viper.router.ActivityRouter;
@@ -20,9 +25,12 @@ public class MyApplication extends Application implements Locator.Host {
         super.onCreate();
         Fresco.initialize(this);
         mLocator = new Locator();
+        ProfileSource local = new LocalProfileSource();
+        ProfileSource remote = new NetworkProfileSource();
+        ProfileRepository repository = new ProfileRepositoryImpl(local, remote);
         mLocator.register(
                 PresenterFactory.class,
-                new ProductionPresenterFactory(new MockProfileSource(), new ActivityRouter(this))
+                new ProductionPresenterFactory(new MockProfileSource(), new ActivityRouter(this), repository)
         );
     }
 

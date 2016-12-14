@@ -25,6 +25,11 @@ public class MockProfileSource implements ProfileSource {
         return task;
     }
 
+    @Override
+    public Future<Integer> updateProfile(int profileId, Profile profile, CompleteListener<Integer> completeListener) {
+        return null;
+    }
+
     private static class MockProfile implements Profile {
         @Override
         public String getName() {
@@ -39,6 +44,11 @@ public class MockProfileSource implements ProfileSource {
         @Override
         public Uri getAvatarUri() {
             return Uri.parse("https://habrastorage.org/getpro/habr/avatars/2cc/1d7/75b/2cc1d775bde34946eaaab89940e1e32e.png");
+        }
+
+        @Override
+        public int getAge() {
+            return 17;
         }
     }
 }
