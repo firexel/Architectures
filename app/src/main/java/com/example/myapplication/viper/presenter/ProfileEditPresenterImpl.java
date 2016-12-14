@@ -16,16 +16,14 @@ public class ProfileEditPresenterImpl implements ProfileEditPresenter {
     private final View view;
     private final Router router;
     private final ProfileEditInteractor editInteractor;
-    private final ProfileGetInteractor getInteractor;
     private final int profileId;
     private final ProfileMapper mapper;
 
-    public ProfileEditPresenterImpl(final View view, int profileId, Router router,
-                                    ProfileEditInteractor editInteractor,
-                                    ProfileGetInteractor getInteractor) {
+    private Profile mLoadedProfile;
+
+    public ProfileEditPresenterImpl(final View view, Router router, ProfileEditInteractor editInteractor, ProfileGetInteractor getInteractor, int profileId) {
         this.view = view;
         this.router = router;
-        this.getInteractor = getInteractor;
         this.editInteractor = editInteractor;
         this.profileId = profileId;
         this.mapper = new ProfileMapperImpl();
@@ -34,8 +32,9 @@ public class ProfileEditPresenterImpl implements ProfileEditPresenter {
         getInteractor.getProfile(profileId, new ProfileGetInteractor.OnProfileGet() {
             @Override
             public void onSuccess(Profile profile) {
+                mLoadedProfile = profile;
                 view.hideProgress();
-                ViewModel vm = mapper.toVViewModel(profile);
+                ViewModel vm = mapper.toViewModel(profile);
                 view.showProfile(vm);
             }
 
@@ -47,11 +46,17 @@ public class ProfileEditPresenterImpl implements ProfileEditPresenter {
         });
     }
 
-
     @Override
-    public void onEditProfile(ViewModel profileModel) {
-        Profile profile = mapper.toProfile(profileModel);
+    public void onEditProfile(EditViewModel profileDiff) {
+        ViewModel viewModel = new ViewModel(
+                profileDiff.getName(),
+                profileDiff.getSurname(),
+                mLoadedProfile.getAvatarUri(),
+                mLoadedProfile.getAge()
+        );
+        Profile profile = mapper.toProfile(viewModel);
         view.showProgress();
+        view.hideError();
         editInteractor.saveProfile(profileId, profile, new ProfileEditInteractor.OnProfileEdit() {
             @Override
             public void onSuccess(int id) {
@@ -63,6 +68,12 @@ public class ProfileEditPresenterImpl implements ProfileEditPresenter {
             public void onFailure() {
                 view.hideProgress();
                 view.showError();
+            }
+
+            @Override
+            public void onInvalidProfile() {
+                view.hideProgress();
+                view.showInvalidProfile();
             }
         });
     }

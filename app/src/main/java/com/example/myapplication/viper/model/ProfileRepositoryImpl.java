@@ -1,51 +1,48 @@
 package com.example.myapplication.viper.model;
 
+import android.net.Uri;
+import android.text.TextUtils;
+
+import com.example.myapplication.viper.domain.DomainProfile;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by kirillf on 12/14/16.
  */
 
 public class ProfileRepositoryImpl implements ProfileRepository {
-    private final ProfileSource local;
-    private final ProfileSource remote;
 
-    public ProfileRepositoryImpl(ProfileSource local, ProfileSource remote) {
-        this.local = local;
-        this.remote = remote;
+    private final Map<Integer, Profile> mProfiles = new HashMap<>();
+
+    public ProfileRepositoryImpl() {
+        mProfiles.put(1, new DomainProfile(
+                "Alex", "Naumov",
+                Uri.parse("https://habrastorage.org/getpro/habr/avatars/2cc/1d7/75b/2cc1d775bde34946eaaab89940e1e32e.png"),
+                25
+        ));
     }
 
     @Override
     public void getProfile(int id, final RepositoryCallback<Profile> callback) {
-        local.loadProfile(id, new ProfileSource.CompleteListener<Profile>() {
-            @Override
-            public void onLoaded(Profile item) {
-                if (item != null) {
-                    callback.onComplete(item);
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                callback.onFailure(e);
-            }
-        });
-
-        // TODO: getFromRemote
+        Profile profile = mProfiles.get(id);
+        if (profile != null) {
+            callback.onComplete(profile);
+        } else {
+            callback.onFailure(new NullPointerException().fillInStackTrace());
+        }
     }
 
     @Override
     public void updateProfile(final int id, Profile profile, final RepositoryCallback<Integer> callback) {
-        local.updateProfile(id, profile, new ProfileSource.CompleteListener<Integer>() {
-            @Override
-            public void onLoaded(Integer item) {
-                callback.onComplete(item);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                callback.onFailure(e);
-            }
-        });
-
-        //TODO: updateRemote
+        if (profile.getAge() < 0
+                || TextUtils.isEmpty(profile.getName())
+                || TextUtils.isEmpty(profile.getSurname())) {
+            callback.onFailure(new IllegalArgumentException());
+        } else {
+            mProfiles.put(id, profile);
+            callback.onComplete(id);
+        }
     }
 }

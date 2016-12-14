@@ -9,7 +9,8 @@ import android.support.annotation.Nullable;
  */
 
 public interface ProfileEditPresenter {
-    void onEditProfile(ViewModel profileModel);
+    void onEditProfile(EditViewModel profileModel);
+
     void destroy();
 
     interface View {
@@ -18,14 +19,14 @@ public interface ProfileEditPresenter {
         void hideError();
         void showProgress();
         void hideProgress();
-        void showInvalidCredentials();
+        void showInvalidProfile();
     }
 
     class ViewModel {
-        String mName;
-        String mSurname;
-        Uri mAvatar;
-        int mAge;
+        private final String mName;
+        private final String mSurname;
+        private final Uri mAvatar;
+        private final int mAge;
 
         public ViewModel(@NonNull String mName, @NonNull String mSurname, @Nullable Uri mAvatar, int mAge) {
             this.mName = mName;
@@ -51,6 +52,24 @@ public interface ProfileEditPresenter {
 
         public int getAge() {
             return mAge;
+        }
+    }
+
+    class EditViewModel {
+        private final String mName;
+        private final String mSurname;
+
+        public EditViewModel(String name, String surname) {
+            mName = name;
+            mSurname = surname;
+        }
+
+        public String getName() {
+            return mName;
+        }
+
+        public String getSurname() {
+            return mSurname;
         }
     }
 }

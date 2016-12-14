@@ -25,7 +25,11 @@ public class ProfileEditInteractorImpl implements ProfileEditInteractor {
 
             @Override
             public void onFailure(Throwable t) {
-                callback.onFailure();
+                if (t instanceof IllegalArgumentException) {
+                    callback.onInvalidProfile();
+                } else {
+                    callback.onFailure();
+                }
             }
         });
     }

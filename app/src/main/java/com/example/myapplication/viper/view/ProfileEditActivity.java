@@ -42,11 +42,9 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileEdi
         findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfileEditPresenter.ViewModel vm = new ProfileEditPresenter.ViewModel(
+                ProfileEditPresenter.EditViewModel vm = new ProfileEditPresenter.EditViewModel(
                         mNameText.getText().toString(),
-                        mSurnameText.getText().toString(),
-                        null,
-                        0
+                        mSurnameText.getText().toString()
                 );
                 mPresenter.onEditProfile(vm);
             }
@@ -85,7 +83,7 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileEdi
     }
 
     @Override
-    public void showInvalidCredentials() {
+    public void showInvalidProfile() {
         new AlertDialog.Builder(this)
                 .setTitle("Invalid credentials")
                 .setPositiveButton("Ok", null)

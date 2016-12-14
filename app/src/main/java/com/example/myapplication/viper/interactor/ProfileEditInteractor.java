@@ -14,5 +14,6 @@ public interface ProfileEditInteractor {
     interface OnProfileEdit {
         void onSuccess(int id);
         void onFailure();
+        void onInvalidProfile();
     }
 }

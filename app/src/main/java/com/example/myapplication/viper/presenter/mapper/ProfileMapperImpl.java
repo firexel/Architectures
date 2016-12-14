@@ -18,7 +18,7 @@ public class ProfileMapperImpl implements ProfileMapper {
     }
 
     @Override
-    public ProfileEditPresenter.ViewModel toVViewModel(Profile profile) {
+    public ProfileEditPresenter.ViewModel toViewModel(Profile profile) {
         return new ProfileEditPresenter.ViewModel(profile.getName(),
                 profile.getSurname(),
                 profile.getAvatarUri(),

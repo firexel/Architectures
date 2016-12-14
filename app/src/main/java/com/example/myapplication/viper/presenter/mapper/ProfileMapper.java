@@ -8,8 +8,6 @@ import com.example.myapplication.viper.presenter.ProfileEditPresenter;
  */
 
 public interface ProfileMapper {
-
     Profile toProfile(ProfileEditPresenter.ViewModel profileViewModlel);
-    ProfileEditPresenter.ViewModel toVViewModel(Profile profile);
-
+    ProfileEditPresenter.ViewModel toViewModel(Profile profile);
 }

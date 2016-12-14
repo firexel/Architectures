@@ -5,7 +5,6 @@ import com.example.myapplication.viper.interactor.ProfileEditInteractorImpl;
 import com.example.myapplication.viper.interactor.ProfileGetInteractor;
 import com.example.myapplication.viper.interactor.ProfileGetInteractorImpl;
 import com.example.myapplication.viper.model.ProfileRepository;
-import com.example.myapplication.viper.model.ProfileSource;
 import com.example.myapplication.viper.router.Router;
 
 /**
@@ -13,25 +12,24 @@ import com.example.myapplication.viper.router.Router;
  */
 public class ProductionPresenterFactory implements PresenterFactory {
 
-    private final ProfileSource mProfileSource;
     private final Router mRouter;
     private final ProfileRepository mProfileRepository;
 
-    public ProductionPresenterFactory(ProfileSource profileSource, Router router, ProfileRepository mProfileRepository) {
-        mProfileSource = profileSource;
+    public ProductionPresenterFactory(Router router, ProfileRepository profileRepository) {
         mRouter = router;
-        this.mProfileRepository = mProfileRepository;
+        mProfileRepository = profileRepository;
     }
 
     @Override
     public ProfileViewPresenter createProfileViewPresenter(int profileId, ProfileViewPresenter.View view) {
-        return new ProfileViewPresenterImpl(view, mRouter, profileId, mProfileSource);
+        ProfileGetInteractor getInteractor = new ProfileGetInteractorImpl(mProfileRepository);
+        return new ProfileViewPresenterImpl(view, mRouter, getInteractor, profileId);
     }
 
     @Override
     public ProfileEditPresenter createProfileEditPresenter(int profileId, ProfileEditPresenter.View view) {
         ProfileEditInteractor interactor = new ProfileEditInteractorImpl(mProfileRepository);
         ProfileGetInteractor getInteractor = new ProfileGetInteractorImpl(mProfileRepository);
-        return new ProfileEditPresenterImpl(view, profileId, mRouter, interactor, getInteractor);
+        return new ProfileEditPresenterImpl(view, mRouter, interactor, getInteractor, profileId);
     }
 }
