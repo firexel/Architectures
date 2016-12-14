@@ -9,8 +9,7 @@ import android.support.annotation.Nullable;
  */
 
 public interface ProfileEditPresenter {
-    void onEditProfile(EditViewModel profileModel);
-
+    void onSaveProfile(EditViewModel profileModel);
     void destroy();
 
     interface View {

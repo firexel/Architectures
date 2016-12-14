@@ -46,7 +46,7 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileEdi
                         mNameText.getText().toString(),
                         mSurnameText.getText().toString()
                 );
-                mPresenter.onEditProfile(vm);
+                mPresenter.onSaveProfile(vm);
             }
         });
 
