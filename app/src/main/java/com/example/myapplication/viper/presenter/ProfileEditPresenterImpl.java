@@ -47,7 +47,7 @@ public class ProfileEditPresenterImpl implements ProfileEditPresenter {
     }
 
     @Override
-    public void onEditProfile(EditViewModel profileDiff) {
+    public void onSaveProfile(EditViewModel profileDiff) {
         ViewModel viewModel = new ViewModel(
                 profileDiff.getName(),
                 profileDiff.getSurname(),
