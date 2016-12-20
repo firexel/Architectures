@@ -10,7 +10,7 @@ import com.example.myapplication.dagger.ToyotaJz2Engine;
  * Created by aleksandr.naumov on 20.12.2016.
  */
 
-public class CarImp implements Car {
+public class CarImpl implements Car {
     private final Engine mEngine = new ToyotaJz2Engine();
     private final Gearbox mGearbox = new ManualGearbox();
 
